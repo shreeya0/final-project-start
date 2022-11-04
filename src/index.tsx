@@ -19,6 +19,7 @@ observe((picPosition: [number, number]) => {
             >
                 FISHDOM
             </h1>
+            <h2>Shreeya, Daniel, </h2>
             <div
                 style={{
                     position: "relative",
