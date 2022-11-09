@@ -6,7 +6,7 @@ Browserslist: caniuse-lite is outdated. Please run:
   npx browserslist@latest --update-db
   Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
 FAIL src/App.test.tsx
-  ✕ renders the course name somewhere (98 ms)
+  ✕ renders the course name somewhere (31 ms)
 
   ● renders the course name somewhere
 
@@ -17,66 +17,7 @@ FAIL src/App.test.tsx
       [36m<div>[39m
         [36m<div[39m
           [33mclass[39m=[32m"App"[39m
-        [36m>[39m
-          [36m<div[39m
-            [33mclass[39m=[32m"col"[39m
-          [36m>[39m
-            [36m<div[39m
-              [33mclass[39m=[32m"bg-grey border m-2 p-2"[39m
-              [33mstyle[39m=[32m"height: 100%; width: 25%;"[39m
-            [36m>[39m
-              [36m<div[39m
-                [33mclass[39m=[32m"container"[39m
-              [36m>[39m
-                [36m<h4>[39m
-                  [36m<b>[39m
-                    [0mMenu[0m
-                  [36m</b>[39m
-                [36m</h4>[39m
-              [36m</div>[39m
-              [36m<button[39m
-                [33mclass[39m=[32m"btn btn-success"[39m
-                [33mdata-testid[39m=[32m"chooseOption"[39m
-                [33mtype[39m=[32m"button"[39m
-              [36m>[39m
-                [0mFilter through Options[0m
-              [36m</button>[39m
-              [36m<p />[39m
-              [36m<p />[39m
-              [36m<table[39m
-                [33mclass[39m=[32m"table"[39m
-              [36m>[39m
-                [36m<thead>[39m
-                  [36m<tr>[39m
-                    [36m<th>[39m
-                      [0mImage[0m
-                    [36m</th>[39m
-                  [36m</tr>[39m
-                [36m</thead>[39m
-                [36m<tbody>[39m
-                  [36m<tr>[39m
-                    [36m<td>[39m
-                      [36m<img[39m
-                        [33mheight[39m=[32m"25%"[39m
-                        [33msrc[39m=[32m"pixelFish.png"[39m
-                        [33mwidth[39m=[32m"25%"[39m
-                      [36m/>[39m
-                    [36m</td>[39m
-                  [36m</tr>[39m
-                  [36m<tr>[39m
-                    [36m<td>[39m
-                      [36m<img[39m
-                        [33mheight[39m=[32m"25%"[39m
-                        [33msrc[39m=[32m"pixelFish.png"[39m
-                        [33mwidth[39m=[32m"25%"[39m
-                      [36m/>[39m
-                    [36m</td>[39m
-                  [36m</tr>[39m
-                [36m</tbody>[39m
-              [36m</table>[39m
-            [36m</div>[39m
-          [36m</div>[39m
-        [36m</div>[39m
+        [36m/>[39m
       [36m</div>[39m
     [36m</body>[39m
 
@@ -101,11 +42,12 @@ FAIL src/App.test.tsx
 --------------------|---------|----------|---------|---------|-------------------
 File                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 --------------------|---------|----------|---------|---------|-------------------
-All files           |      20 |        0 |   15.38 |   20.68 |                   
- src                |    1.72 |        0 |    5.55 |    1.75 |                   
+All files           |    1.13 |        0 |       4 |    1.17 |                   
+ src                |    1.23 |        0 |       4 |    1.28 |                   
   App.tsx           |     100 |      100 |     100 |     100 |                   
   Board.tsx         |       0 |        0 |       0 |       0 | 7-51              
   BoardSquare.tsx   |       0 |        0 |       0 |       0 | 13-27             
+  Menu.tsx          |       0 |        0 |       0 |       0 | 10-89             
   NumSquareForm.tsx |       0 |      100 |       0 |       0 | 12-31             
   Overlay.tsx       |       0 |      100 |       0 |       0 | 8-9               
   Pic.tsx           |       0 |        0 |       0 |       0 | 5-13              
@@ -113,16 +55,13 @@ All files           |      20 |        0 |   15.38 |   20.68 |
   constants.ts      |       0 |      100 |     100 |       0 | 1                 
   declarations.d.ts |       0 |        0 |       0 |       0 |                   
   game.ts           |       0 |        0 |       0 |       0 | 1-29              
- src/Components     |      40 |        0 |    37.5 |   43.47 |                   
-  Icons.tsx         |       0 |      100 |       0 |       0 | 11-12             
-  Menu.tsx          |   43.47 |        0 |   42.85 |   47.61 | 17-28,32          
- src/interfaces     |     100 |      100 |     100 |     100 |                   
+ src/interfaces     |       0 |      100 |     100 |       0 |                   
   Fish.ts           |       0 |        0 |       0 |       0 |                   
   Tank.ts           |       0 |        0 |       0 |       0 |                   
-  fishpics.ts       |     100 |      100 |     100 |     100 |                   
+  fishpics.ts       |       0 |      100 |     100 |       0 | 1-13              
 --------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.515 s
+Time:        2.059 s
 Ran all test suites.
