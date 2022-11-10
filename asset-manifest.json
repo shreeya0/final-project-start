@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/final-project-start/static/css/main.39f589df.css",
-    "main.js": "/final-project-start/static/js/main.dd841690.js",
+    "main.css": "/final-project-start/static/css/main.e0848c80.css",
+    "main.js": "/final-project-start/static/js/main.33d9d80d.js",
     "static/js/787.4ef7427d.chunk.js": "/final-project-start/static/js/787.4ef7427d.chunk.js",
     "static/media/tank.png": "/final-project-start/static/media/tank.4bea6cceb5d6f3186601.png",
     "static/media/fresh.png": "/final-project-start/static/media/fresh.9c181cf57eaa3e8ad5b3.png",
@@ -11,12 +11,12 @@
     "static/media/salt.png": "/final-project-start/static/media/salt.627786e200f0e94a0fc6.png",
     "static/media/pixelFishTransparent.jpg": "/final-project-start/static/media/pixelFishTransparent.c1a3bc001411aa8be680.jpg",
     "index.html": "/final-project-start/index.html",
-    "main.39f589df.css.map": "/final-project-start/static/css/main.39f589df.css.map",
-    "main.dd841690.js.map": "/final-project-start/static/js/main.dd841690.js.map",
+    "main.e0848c80.css.map": "/final-project-start/static/css/main.e0848c80.css.map",
+    "main.33d9d80d.js.map": "/final-project-start/static/js/main.33d9d80d.js.map",
     "787.4ef7427d.chunk.js.map": "/final-project-start/static/js/787.4ef7427d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.39f589df.css",
-    "static/js/main.dd841690.js"
+    "static/css/main.e0848c80.css",
+    "static/js/main.33d9d80d.js"
   ]
 }
