@@ -48,7 +48,7 @@ export const Fish: FC<FishProps> = ({
 
     return (
         <div
-            className={"fish" + id.toString()}
+            className={"fish" + name.toString()}
             ref={drag}
             style={{
                 ...style,
@@ -57,7 +57,7 @@ export const Fish: FC<FishProps> = ({
                 width: height.toString() + "%",
                 height: height.toString() + "%"
             }}
-            data-testid={"fish" + id.toString()}
+            data-testid={"fish" + name.toString()}
         >
             {children}
             <img
