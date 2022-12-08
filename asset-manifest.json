@@ -1,9 +1,13 @@
 {
   "files": {
-    "main.css": "/final-project-start/static/css/main.886f6a0b.css",
-    "main.js": "/final-project-start/static/js/main.65086367.js",
+    "main.css": "/final-project-start/static/css/main.62faacb9.css",
+    "main.js": "/final-project-start/static/js/main.e3657e9a.js",
     "static/js/787.4ef7427d.chunk.js": "/final-project-start/static/js/787.4ef7427d.chunk.js",
     "static/media/tank.png": "/final-project-start/static/media/tank.4bea6cceb5d6f3186601.png",
+    "static/media/predSalt.png": "/final-project-start/static/media/predSalt.d9ddf4c33ce2d9070db1.png",
+    "static/media/preySalt.png": "/final-project-start/static/media/preySalt.a2e364ed6fd08e009333.png",
+    "static/media/predFresh.png": "/final-project-start/static/media/predFresh.33ba499a29c430b1b0ac.png",
+    "static/media/preyFresh.png": "/final-project-start/static/media/preyFresh.41e7e1593bf8dd4b7197.png",
     "static/media/lionfish.png": "/final-project-start/static/media/lionfish.18a183652de6dcd9acf5.png",
     "static/media/spongebob.png": "/final-project-start/static/media/spongebob.d9827fb36d8271a708ec.png",
     "static/media/pinkjellyfish.png": "/final-project-start/static/media/pinkjellyfish.e467356d064d69f00d6a.png",
@@ -34,12 +38,12 @@
     "static/media/mrkrab.png": "/final-project-start/static/media/mrkrab.8dbd138df5d05d29e16f.png",
     "static/media/shark.png": "/final-project-start/static/media/shark.ac7592a9945d855ed23b.png",
     "index.html": "/final-project-start/index.html",
-    "main.886f6a0b.css.map": "/final-project-start/static/css/main.886f6a0b.css.map",
-    "main.65086367.js.map": "/final-project-start/static/js/main.65086367.js.map",
+    "main.62faacb9.css.map": "/final-project-start/static/css/main.62faacb9.css.map",
+    "main.e3657e9a.js.map": "/final-project-start/static/js/main.e3657e9a.js.map",
     "787.4ef7427d.chunk.js.map": "/final-project-start/static/js/787.4ef7427d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.886f6a0b.css",
-    "static/js/main.65086367.js"
+    "static/css/main.62faacb9.css",
+    "static/js/main.e3657e9a.js"
   ]
 }
