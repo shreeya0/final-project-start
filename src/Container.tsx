@@ -17,8 +17,6 @@ export interface ContainerProps {
     y: number;
     width: number;
     height: number;
-    incFish: () => void;
-    decFish: () => void;
     numFish: MutableRefObject<number>;
     deleteThisFish: [number, number];
     setDeleteVal: (x: number, id: string) => void;
@@ -52,43 +50,34 @@ export const Container: FC<ContainerProps> = ({
     const swapEdit = () => {
         setEdit(!edit);
     };
+    let incRender = deleteVal;
     const [fishes, setFishes] = useState(Array(0).fill(Array(0).fill(null)));
-    const handleChanges = (newTankSalt: boolean, newTankPred: boolean) => {
+    const [clear, setClear] = useState(false);
+    if (clear && fishes[0]) {
+        setFishes(Array(0).fill(Array(0).fill(null)));
+    }
+    if (clear) {
+        setClear(false);
+    }
+    const clearTanks = () => {
+        setClear(true);
+        numFish.current = 0;
+    };
+    const handleChanges = (
+        newTankSalt: boolean,
+        newTankPred: boolean,
+        newClear: boolean
+    ) => {
         if (newTankSalt !== tankSalt || newTankPred !== tankPred) {
             setFishes(Array(0).fill(Array(0).fill(null)));
             setTankSalt(newTankSalt);
             setTankPred(newTankPred);
         }
+        if (newClear) {
+            clearTanks();
+        }
     };
     const smallerSize = tankHeight >= tankWidth ? tankWidth : tankHeight;
-    let incRender = deleteVal;
-    /*
-    for (let i = 0; i < fishes.length; i++) {
-        updateFishes[i] = fishes[i];
-        const name = updateFishes[i][0];
-        let left = updateFishes[i][1];
-        let top = updateFishes[i][2];
-        const s = updateFishes[i][3];
-        const size = updateFishes[i][4];
-        if (tankHeight !== undefined && tankWidth !== undefined) {
-            const smallerSize =
-                tankHeight >= tankWidth ? tankWidth : tankHeight;
-            const fishWidth = smallerSize * (size / 6);
-            const fishHeight = smallerSize * (size / 6);
-            const maxLeft = tankWidth - fishWidth;
-            const maxTop = tankHeight - fishHeight;
-            if (left >= maxLeft) {
-                left = maxLeft - 1;
-                update = true;
-            }
-            if (top >= maxTop) {
-                top = maxTop - 1;
-                update = true;
-            }
-            updateFishes[i] = [name, left, top, s, size];
-        }
-    }
-    */
     const updateFishes = Array(0).fill(Array(0).fill(null));
     fishes.map(
         (
@@ -127,13 +116,6 @@ export const Container: FC<ContainerProps> = ({
             thisFish: [number, number, number, string, number, boolean, boolean]
         ) => (newFishes[fishes.indexOf(thisFish)] = [...thisFish])
     );
-    /*
-    for (let i = 0; i < fishes.length; i++) {
-        if (newFishes[i][0] === delFishID.current) {
-            bool_delete = true;
-            index = i;
-        }
-    }*/
     index = newFishes.reduce(
         (
             it: number,
@@ -157,8 +139,6 @@ export const Container: FC<ContainerProps> = ({
         newFishes.splice(index, 1);
         setFishes(newFishes);
         index = -1;
-        //delFishX.current = -1;
-        //delFishID.current = -1;
     }
 
     const addFishNewTank = (
@@ -210,9 +190,7 @@ export const Container: FC<ContainerProps> = ({
             newFishes[i] = fishes[i];
         }
         const newFish = [numFish.current, 10, 10, s, size, pred, salt];
-        //incFish();
         numFish.current++;
-        //renderDeleteVal(incRender++);
         newFishes.push(newFish);
         setFishes(newFishes);
     };
@@ -254,14 +232,9 @@ export const Container: FC<ContainerProps> = ({
                 newFishes[i] = fishes[i];
             }
             if (tankWidth !== undefined && tankHeight !== undefined) {
-                /*console.log(
-                    "tankWidth: " + tankWidth + " tankHeight: " + tankHeight
-                );*/
                 const smallerSize =
                     tankHeight >= tankWidth ? tankWidth : tankHeight;
-                //console.log("smallerSize: " + smallerSize);
                 const fishWidth = smallerSize * (size / 6);
-                //console.log("fishWidth: " + fishWidth);
                 const fishHeight = smallerSize * (size / 6);
                 if (name === -3) {
                     addFishFromMenu(s, size, pred, salt);

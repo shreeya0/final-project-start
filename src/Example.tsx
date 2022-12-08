@@ -7,8 +7,6 @@ export interface ExampleProps {
     y: number;
     width: number;
     height: number;
-    incFish: () => void;
-    decFish: () => void;
     numFish: MutableRefObject<number>;
     deleteThisFish: [number, number];
     delFishX: MutableRefObject<number>;
@@ -27,8 +25,6 @@ export const Example: FC<ExampleProps> = ({
     y,
     width,
     height,
-    incFish,
-    decFish,
     numFish,
     deleteThisFish,
     delFishX,
@@ -49,8 +45,6 @@ export const Example: FC<ExampleProps> = ({
                 y={y}
                 width={width}
                 height={height}
-                incFish={incFish}
-                decFish={decFish}
                 numFish={numFish}
                 deleteThisFish={deleteThisFish}
                 delFishX={delFishX}

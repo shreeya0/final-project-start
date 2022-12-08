@@ -6,7 +6,11 @@ interface tankEditProps {
     tankSalt: boolean;
     tankPred: boolean;
     swapEdit: () => void;
-    handleChanges: (newTankSalt: boolean, newTankPred: boolean) => void;
+    handleChanges: (
+        newTankSalt: boolean,
+        newTankPred: boolean,
+        newClear: boolean
+    ) => void;
 }
 
 export const TankEdit = ({
@@ -57,7 +61,7 @@ export const TankEdit = ({
                 <div>
                     <Button
                         onClick={() => {
-                            handleChanges(newTankSalt, newTankPred);
+                            handleChanges(newTankSalt, newTankPred, false);
                             swapEdit();
                         }}
                         style={{
@@ -71,10 +75,25 @@ export const TankEdit = ({
                     <Button
                         onClick={swapEdit}
                         style={{
-                            color: "white"
+                            color: "white",
+                            marginRight: "1rem"
                         }}
                     >
                         Cancel
+                    </Button>
+                    <Button
+                        onClick={() => {
+                            handleChanges(tankSalt, tankPred, true);
+                            swapEdit();
+                        }}
+                        data-testid="chooseOption"
+                        style={{
+                            position: "relative",
+                            top: "-110%",
+                            backgroundColor: "rgb(14,109,253)"
+                        }}
+                    >
+                        Clear All Fish
                     </Button>
                 </div>
             </div>
