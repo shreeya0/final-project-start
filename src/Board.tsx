@@ -5,8 +5,6 @@ const renderSquare = (
     i: number,
     width: number,
     height: number,
-    incFish: () => void,
-    decFish: () => void,
     numFish: MutableRefObject<number>,
     delFishX: MutableRefObject<number>,
     delFishID: MutableRefObject<number>,
@@ -33,8 +31,6 @@ const renderSquare = (
                 y={y}
                 width={width}
                 height={height}
-                incFish={incFish}
-                decFish={decFish}
                 numFish={numFish}
                 deleteThisFish={[delFishX.current, delFishID.current]}
                 delFishX={delFishX}
@@ -58,22 +54,13 @@ type BoardProps = {
 };
 
 export function Board({ numSquares, boardWidth, boardHeight }: BoardProps) {
+    const numFish = useRef(0);
     const numCol = Math.ceil(Math.sqrt(numSquares));
     const width = 100 / numCol;
     const height = 100 / Math.ceil(numSquares / numCol);
     const tankWidth = (width / 100) * boardWidth;
     const tankHeight = (height / 100) * boardHeight;
     const squares = [];
-    //const [numFish, setNumFish] = useState(0);
-    const numFish = useRef(0);
-    const incFish = () => {
-        //setNumFish(numFish + 1);
-        numFish.current = numFish.current + 1;
-    };
-    const decFish = () => {
-        //setNumFish(numFish - 1);
-        numFish.current = numFish.current - 1;
-    };
     const delFishX = useRef(-1);
     const delFishID = useRef(-1);
     const [renderDelete, setRenderDelete] = useState(0);
@@ -101,8 +88,6 @@ export function Board({ numSquares, boardWidth, boardHeight }: BoardProps) {
                 i,
                 width,
                 height,
-                incFish,
-                decFish,
                 numFish,
                 delFishX,
                 delFishID,
