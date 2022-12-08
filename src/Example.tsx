@@ -17,6 +17,9 @@ export interface ExampleProps {
     resetDeleteVal: () => void;
     renderDeleteVal: (r: number) => void;
     deleteVal: number;
+    numSquares: number;
+    tankWidth: number;
+    tankHeight: number;
 }
 
 export const Example: FC<ExampleProps> = ({
@@ -33,7 +36,10 @@ export const Example: FC<ExampleProps> = ({
     setDeleteVal,
     resetDeleteVal,
     renderDeleteVal,
-    deleteVal
+    deleteVal,
+    numSquares,
+    tankWidth,
+    tankHeight
 }) => {
     return (
         <div>
@@ -53,6 +59,9 @@ export const Example: FC<ExampleProps> = ({
                 resetDeleteVal={resetDeleteVal}
                 renderDeleteVal={renderDeleteVal}
                 deleteVal={deleteVal}
+                numSquares={numSquares}
+                tankWidth={tankWidth}
+                tankHeight={tankHeight}
             />
         </div>
     );

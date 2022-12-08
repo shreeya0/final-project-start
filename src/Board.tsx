@@ -1,4 +1,5 @@
 import React, { MutableRefObject, useRef, useState } from "react";
+import { NumberLiteralType } from "typescript";
 import Example from "./Example";
 
 const renderSquare = (
@@ -13,7 +14,10 @@ const renderSquare = (
     setDeleteVal: (x: number, id: string) => void,
     resetDeleteVal: () => void,
     renderDeleteVal: (r: number) => void,
-    deleteVal: number
+    deleteVal: number,
+    numSquares: number,
+    tankWidth: number,
+    tankHeight: number
 ) => {
     const x = i;
     const y = 0;
@@ -40,6 +44,9 @@ const renderSquare = (
                 resetDeleteVal={resetDeleteVal}
                 renderDeleteVal={renderDeleteVal}
                 deleteVal={deleteVal}
+                numSquares={numSquares}
+                tankWidth={tankWidth}
+                tankHeight={tankHeight}
             ></Example>
         </div>
     );
@@ -47,12 +54,16 @@ const renderSquare = (
 
 type BoardProps = {
     numSquares: number;
+    boardWidth: number;
+    boardHeight: number;
 };
 
-export function Board({ numSquares }: BoardProps) {
+export function Board({ numSquares, boardWidth, boardHeight }: BoardProps) {
     const numCol = Math.ceil(Math.sqrt(numSquares));
     const width = 100 / numCol;
     const height = 100 / Math.ceil(numSquares / numCol);
+    const tankWidth = (width / 100) * boardWidth;
+    const tankHeight = (height / 100) * boardHeight;
     const squares = [];
     //const [numFish, setNumFish] = useState(0);
     const numFish = useRef(0);
@@ -99,7 +110,10 @@ export function Board({ numSquares }: BoardProps) {
                 setDeleteVal,
                 resetDeleteVal,
                 renderDeleteVal,
-                renderDelete
+                renderDelete,
+                numSquares,
+                tankWidth,
+                tankHeight
             )
         );
     }

@@ -24,6 +24,9 @@ export interface ContainerProps {
     delFishX: MutableRefObject<number>;
     delFishID: MutableRefObject<number>;
     renderDeleteVal: (r: number) => void;
+    numSquares: number;
+    tankWidth: number;
+    tankHeight: number;
 }
 
 export const Container: FC<ContainerProps> = ({
@@ -36,11 +39,43 @@ export const Container: FC<ContainerProps> = ({
     numFish,
     setDeleteVal,
     delFishX,
-    delFishID
+    delFishID,
+    tankWidth,
+    tankHeight
 }) => {
     let incRender = deleteVal;
     let r = false;
     const [fishes, setFishes] = useState(Array(0).fill(Array(0).fill(null)));
+    const updateFishes = [...fishes];
+    let update = false;
+    for (let i = 0; i < fishes.length; i++) {
+        updateFishes[i] = fishes[i];
+        const name = updateFishes[i][0];
+        let left = updateFishes[i][1];
+        let top = updateFishes[i][2];
+        const s = updateFishes[i][3];
+        const size = updateFishes[i][4];
+        if (tankHeight !== undefined && tankWidth !== undefined) {
+            const smallerSize =
+                tankHeight >= tankWidth ? tankWidth : tankHeight;
+            const fishWidth = smallerSize * (size / 6);
+            const fishHeight = smallerSize * (size / 6);
+            const maxLeft = tankWidth - fishWidth;
+            const maxTop = tankHeight - fishHeight;
+            if (left >= maxLeft) {
+                left = maxLeft - 1;
+                update = true;
+            }
+            if (top >= maxTop) {
+                top = maxTop - 1;
+                update = true;
+            }
+            updateFishes[i] = [name, left, top, s, size];
+        }
+    }
+    if (update === true) {
+        setFishes(updateFishes);
+    }
     const newFishes = [...fishes];
     let index = -1;
     let bool_delete = false;
@@ -246,8 +281,6 @@ export const Container: FC<ContainerProps> = ({
         tankPic = "fresh.png";
     }
     console.log("fishes tank ", x, ": ", fishes);
-    const tankHeight = document.getElementById("tank")?.offsetHeight;
-    const tankWidth = document.getElementById("tank")?.offsetWidth;
     return (
         <div
             ref={drop}

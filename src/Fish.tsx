@@ -49,6 +49,8 @@ export const Fish: FC<FishProps> = ({
     );
 
     const smallerSize = height > width ? width : height;
+    //const area = Math.sqrt(height * width);
+    //console.log("area: " + area + " smallerSize: " + smallerSize);
 
     if (isDragging && hideSourceOnDrag) {
         return <div ref={drag} />;

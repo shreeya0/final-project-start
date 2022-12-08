@@ -3,6 +3,10 @@ import { Form } from "react-bootstrap";
 import Board from "./Board";
 export function NumSquareForm(): JSX.Element {
     const [numSquares, setNumSquares] = useState(12);
+    const windowHeight = window.innerHeight;
+    const windowWidth = window.innerWidth;
+    const boardHeight = windowHeight * 0.8;
+    const boardWidth = windowWidth * 0.7;
     return (
         <div>
             <div>
@@ -30,13 +34,17 @@ export function NumSquareForm(): JSX.Element {
                     position: "fixed",
                     bottom: "10%",
                     right: "2%",
-                    width: "70%",
-                    height: "80%",
+                    width: boardWidth.toString() + "px",
+                    height: boardHeight.toString() + "px",
                     border: "2px solid black",
                     backgroundColor: "gray"
                 }}
             >
-                <Board numSquares={numSquares} />
+                <Board
+                    numSquares={numSquares}
+                    boardWidth={boardWidth}
+                    boardHeight={boardHeight}
+                />
             </div>
         </div>
     );
