@@ -32,15 +32,15 @@ File                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
 --------------------|---------|----------|---------|---------|-------------------
 All files           |       0 |        0 |       0 |       0 |                   
  src                |       0 |        0 |       0 |       0 |                   
-  Board.tsx         |       0 |      100 |       0 |       0 | 4-109             
+  Board.tsx         |       0 |      100 |       0 |       0 | 4-122             
   BoardSquare.tsx   |       0 |        0 |       0 |       0 | 16-50             
-  Container.tsx     |       0 |        0 |       0 |       0 | 29-277            
-  Example.tsx       |       0 |      100 |       0 |       0 | 22-38             
-  Fish.tsx          |       0 |        0 |       0 |       0 | 7-57              
+  Container.tsx     |       0 |        0 |       0 |       0 | 32-310            
+  Example.tsx       |       0 |      100 |       0 |       0 | 25-44             
+  Fish.tsx          |       0 |        0 |       0 |       0 | 7-59              
   ItemTypes.ts      |       0 |      100 |     100 |       0 | 1                 
   Menu.tsx          |       0 |        0 |       0 |       0 | 14-136            
   MenuFish.tsx      |       0 |        0 |       0 |       0 | 17-41             
-  NumSquareForm.tsx |       0 |      100 |       0 |       0 | 5-24              
+  NumSquareForm.tsx |       0 |      100 |       0 |       0 | 5-28              
   Overlay.tsx       |       0 |      100 |       0 |       0 | 8-9               
   Square.tsx        |       0 |        0 |       0 |       0 | 10-27             
   TankEdit.tsx      |       0 |      100 |       0 |       0 | 12-65             
@@ -58,5 +58,5 @@ All files           |       0 |        0 |       0 |       0 |
 Test Suites: 1 failed, 1 total
 Tests:       0 total
 Snapshots:   0 total
-Time:        3.939 s
+Time:        3.704 s
 Ran all test suites.
