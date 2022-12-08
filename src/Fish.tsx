@@ -23,6 +23,8 @@ export interface FishProps {
     width: number;
     s: string;
     size: number;
+    pred: boolean;
+    salt: boolean;
 }
 
 export const Fish: FC<FishProps> = ({
@@ -35,17 +37,19 @@ export const Fish: FC<FishProps> = ({
     height,
     width,
     s,
-    size
+    size,
+    pred,
+    salt
 }) => {
     const [{ isDragging }, drag] = useDrag(
         () => ({
             type: ItemTypes.FISH,
-            item: { id, left, top, name, s, size },
+            item: { id, left, top, name, s, size, pred, salt },
             collect: (monitor) => ({
                 isDragging: monitor.isDragging()
             })
         }),
-        [id, left, top, name, s, size]
+        [id, left, top, name, s, size, pred, salt]
     );
 
     const smallerSize = height > width ? width : height;
@@ -66,6 +70,7 @@ export const Fish: FC<FishProps> = ({
                 top,
                 height: (smallerSize * (size / 6)).toString() + "px",
                 width: (smallerSize * (size / 6)).toString() + "px",
+                borderRadius: "10px",
                 border: "2px dotted white"
             }}
             data-testid={"fish" + id.toString()}

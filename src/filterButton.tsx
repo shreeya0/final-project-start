@@ -12,7 +12,7 @@ export function FilterButton({ handleShowModal }: filterButtonProps) {
             onClick={handleShowModal}
             data-testid="chooseOption"
             style={{
-                backgroundColor: "rgb(0,105,188)"
+                backgroundColor: "rgb(14,109,253)"
             }}
         >
             Filter

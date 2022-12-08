@@ -12,7 +12,7 @@ export function SortButton({ handleShowModal }: sortButtonProps) {
             onClick={handleShowModal}
             data-testid="chooseOption"
             style={{
-                backgroundColor: "grey"
+                backgroundColor: "rgb(33,37,41)"
             }}
         >
             Sort

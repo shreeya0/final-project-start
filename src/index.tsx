@@ -9,28 +9,41 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 
 observe(() => {
     ReactDOM.render(
-        <DndProvider backend={HTML5Backend}>
-            <React.StrictMode>
-                <h1
-                    className="text-center"
-                    style={{
-                        fontStyle: "Bold",
-                        fontFamily: "Impact",
-                        fontSize: "80px"
-                    }}
-                >
-                    FISHDOM: Shreeya, Daniel, Jason
-                </h1>
-
-                <div>
-                    <Menu></Menu>
-                </div>
-                <div>
-                    <NumSquareForm></NumSquareForm>
-                </div>
-                <div className="App"></div>
-            </React.StrictMode>
-        </DndProvider>,
+        <div>
+            <DndProvider backend={HTML5Backend}>
+                <React.StrictMode>
+                    <h1
+                        className="text-center"
+                        style={{
+                            fontStyle: "Bold",
+                            fontFamily: "Impact",
+                            fontSize: "80px",
+                            color: "rgb(33,37,41)"
+                        }}
+                    >
+                        FISH HOOKS
+                    </h1>
+                    <span
+                        style={{
+                            fontFamily: "Impact",
+                            fontSize: "30px",
+                            position: "fixed",
+                            top: "90.5%",
+                            left: "28%",
+                            color: "rgb(33,37,41)"
+                        }}
+                    >
+                        Authors: Daniel, Shreeya, Jason
+                    </span>
+                    <div>
+                        <Menu></Menu>
+                    </div>
+                    <div>
+                        <NumSquareForm></NumSquareForm>
+                    </div>
+                </React.StrictMode>
+            </DndProvider>
+        </div>,
         document.getElementById("root")
     );
 });

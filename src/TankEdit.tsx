@@ -4,19 +4,20 @@ import Tank from "./interfaces/Tank";
 import "./TankEdit.css";
 
 interface tankEditProps {
-    tank: Tank;
+    tankSalt: boolean;
+    tankPred: boolean;
     swapEdit: () => void;
-    editTank: (newTank: Tank) => void;
+    handleChanges: (newTankSalt: boolean, newTankPred: boolean) => void;
 }
 
-export const TankEdit = ({ tank, swapEdit, editTank }: tankEditProps) => {
-    const [newTank, setNewTank] = useState<Tank>({
-        ...tank
-    });
-
-    function saveChanges() {
-        editTank(newTank);
-    }
+export const TankEdit = ({
+    tankSalt,
+    tankPred,
+    swapEdit,
+    handleChanges
+}: tankEditProps) => {
+    const [newTankSalt, setNewTankSalt] = useState(tankSalt);
+    const [newTankPred, setNewTankPred] = useState(tankPred);
     return (
         <div>
             <div className="edit_header">
@@ -28,13 +29,11 @@ export const TankEdit = ({ tank, swapEdit, editTank }: tankEditProps) => {
                             id="is-freshwater_check"
                             label="Freshwater"
                             data-testid="Tank Freshwater"
-                            checked={!newTank.salt}
+                            checked={!newTankSalt}
                             onChange={() => {
-                                setNewTank({
-                                    ...newTank,
-                                    salt: !newTank.salt
-                                });
+                                setNewTankSalt(!newTankSalt);
                             }}
+                            style={{ color: "white" }}
                         ></Form.Check>
                     </div>
                     <div className="predator_flex">
@@ -44,30 +43,38 @@ export const TankEdit = ({ tank, swapEdit, editTank }: tankEditProps) => {
                             id="is-predator_check"
                             label="Predator"
                             data-testid="Tank Freshwater"
-                            checked={newTank.pred}
+                            checked={newTankPred}
                             onChange={() => {
-                                setNewTank({
-                                    ...newTank,
-                                    pred: !newTank.pred
-                                });
+                                setNewTankPred(!newTankPred);
+                            }}
+                            style={{
+                                color: "white"
                             }}
                         ></Form.Check>
                     </div>
                 </Form.Group>
             </div>
-            <div className="edit_footer">
+            <div>
                 <div>
                     <Button
-                        variant="success"
-                        className="save_edit_btn"
                         onClick={() => {
-                            saveChanges();
+                            handleChanges(newTankSalt, newTankPred);
                             swapEdit();
+                        }}
+                        style={{
+                            color: "white",
+                            marginRight: "1rem",
+                            marginLeft: "1rem"
                         }}
                     >
                         Save
                     </Button>
-                    <Button variant="warning" onClick={swapEdit}>
+                    <Button
+                        onClick={swapEdit}
+                        style={{
+                            color: "white"
+                        }}
+                    >
                         Cancel
                     </Button>
                 </div>

@@ -119,44 +119,59 @@ export function Menu() {
             </Modal>
             <p></p>
             <div
-                className="table-wrapper-scroll-y my-custom-scrollbar"
                 style={{
-                    position: "relative",
-                    height: "102.3%",
-                    width: "104%",
-                    left: "-2%",
-                    top: "-3.1%",
-                    overflow: "auto",
-                    borderRadius: "10px"
+                    scrollbarWidth: "none",
+                    overflow: "hidden",
+                    borderRadius: "10px",
+                    height: "100%",
+                    width: "100%",
+                    left: "0",
+                    top: "-3.1%"
                 }}
             >
-                <Table className="table-responsive" variant="dark">
-                    <tbody>
-                        {option.map((s: Fish) => (
-                            <tr key={s.image}>
-                                <td>
-                                    <div style={{ alignContent: "center" }}>
-                                        <MenuFish
-                                            s={s.image}
-                                            size={s.size}
-                                            key={s.image}
-                                            id={s.image}
-                                            name={-3}
-                                            left={0}
-                                            top={0}
-                                            hideSourceOnDrag={true}
-                                        ></MenuFish>
-                                    </div>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </Table>
+                <div
+                    //className="table-wrapper-scroll-y my-custom-scrollbar"
+                    style={{
+                        position: "absolute",
+                        height: "100%",
+                        width: "100%",
+                        left: "0%",
+                        top: "0%",
+                        borderRadius: "10px",
+                        scrollbarWidth: "none",
+                        overflow: "auto"
+                    }}
+                >
+                    <Table className="table-responsive" variant="dark">
+                        <tbody>
+                            {option.map((s: Fish) => (
+                                <tr key={s.image}>
+                                    <td>
+                                        <div style={{ alignContent: "center" }}>
+                                            <MenuFish
+                                                s={s.image}
+                                                size={s.size}
+                                                key={s.image}
+                                                id={s.image}
+                                                name={-3}
+                                                left={0}
+                                                top={0}
+                                                hideSourceOnDrag={true}
+                                                pred={s.predator}
+                                                salt={!s.freshwater}
+                                            ></MenuFish>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                </div>
             </div>
             <ButtonGroup
                 style={{
-                    position: "relative",
-                    bottom: "2%"
+                    position: "absolute",
+                    bottom: "-5.5%"
                 }}
             >
                 <div style={{ position: "relative", left: "-9%" }}>

@@ -12,6 +12,8 @@ export interface MenuFishProps {
     hideSourceOnDrag?: boolean;
     children?: ReactNode;
     size: number;
+    pred: boolean;
+    salt: boolean;
 }
 
 export const MenuFish: FC<MenuFishProps> = ({
@@ -22,17 +24,19 @@ export const MenuFish: FC<MenuFishProps> = ({
     name,
     hideSourceOnDrag,
     children,
-    size
+    size,
+    pred,
+    salt
 }) => {
     const [{ isDragging }, drag] = useDrag(
         () => ({
             type: ItemTypes.FISH,
-            item: { id, left, top, name, s, size },
+            item: { id, left, top, name, s, size, pred, salt },
             collect: (monitor) => ({
                 isDragging: monitor.isDragging()
             })
         }),
-        [id, left, top, name, s, size]
+        [id, left, top, name, s, size, pred, salt]
     );
 
     if (isDragging && hideSourceOnDrag) {

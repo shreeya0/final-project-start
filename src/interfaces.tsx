@@ -6,4 +6,6 @@ export interface DragItem {
     top: number;
     s: string;
     size: number;
+    pred: boolean;
+    salt: boolean;
 }
