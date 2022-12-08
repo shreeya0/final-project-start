@@ -52,11 +52,14 @@ export const Container: FC<ContainerProps> = ({
     const swapEdit = () => {
         setEdit(!edit);
     };
-    const handleChanges = (newTankSalt: boolean, newTankPred: boolean) => {
-        setTankSalt(newTankSalt);
-        setTankPred(newTankPred);
-    };
     const [fishes, setFishes] = useState(Array(0).fill(Array(0).fill(null)));
+    const handleChanges = (newTankSalt: boolean, newTankPred: boolean) => {
+        if (newTankSalt !== tankSalt || newTankPred !== tankPred) {
+            setFishes(Array(0).fill(Array(0).fill(null)));
+            setTankSalt(newTankSalt);
+            setTankPred(newTankPred);
+        }
+    };
     const smallerSize = tankHeight >= tankWidth ? tankWidth : tankHeight;
     let incRender = deleteVal;
     /*
