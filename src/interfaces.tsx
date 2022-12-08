@@ -4,4 +4,6 @@ export interface DragItem {
     name: number;
     left: number;
     top: number;
+    s: string;
+    size: number;
 }

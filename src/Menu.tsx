@@ -1,9 +1,13 @@
 /* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import { Button, ButtonGroup, Col, Form, Modal, Table } from "react-bootstrap";
+import { useDrop, XYCoord } from "react-dnd";
 import { FilterButton } from "./filterButton";
+import { DragItem } from "./interfaces";
 import { Fish } from "./interfaces/Fish";
 import { allList } from "./interfaces/fishpics";
+import { ItemTypes } from "./ItemTypes";
+import { MenuFish } from "./MenuFish";
 import { SortButton } from "./sortButton";
 
 type ChangeEvent = React.ChangeEvent<
@@ -41,6 +45,17 @@ export function Menu() {
     const changeView = (event: ChangeEvent) => {
         setView(event.target.value);
     };
+    /*
+    const [, drop] = useDrop(
+        () => ({
+            accept: ItemTypes.FISH,
+            drop(item: DragItem, monitor) {
+                return;
+            }
+        }),
+        []
+    );
+    */
     return (
         <div
             className="bg-grey border m-2 p-2"
@@ -123,19 +138,18 @@ export function Menu() {
                         {option.map((s: Fish) => (
                             <tr key={s.image}>
                                 <td>
-                                    <Button
-                                        style={{
-                                            height: "50x",
-                                            backgroundColor: "rgb(33,37,41)",
-                                            borderColor: "rgb(33,37,41)"
-                                        }}
-                                    >
-                                        <img
-                                            src={require(s.image + "")}
-                                            width="25%"
-                                            height="25%"
-                                        />
-                                    </Button>
+                                    <div style={{ alignContent: "center" }}>
+                                        <MenuFish
+                                            s={s.image}
+                                            size={s.size}
+                                            key={s.image}
+                                            id={s.image}
+                                            name={-3}
+                                            left={0}
+                                            top={0}
+                                            hideSourceOnDrag={true}
+                                        ></MenuFish>
+                                    </div>
                                 </td>
                             </tr>
                         ))}
@@ -153,7 +167,7 @@ export function Menu() {
                         handleShowModal={handleShowModal}
                     ></FilterButton>
                 </div>
-                <div style={{ position: "relative", left: "287%" }}>
+                <div style={{ position: "relative", left: "10%" }}>
                     <SortButton
                         handleShowModal={handleShowModalSort}
                     ></SortButton>

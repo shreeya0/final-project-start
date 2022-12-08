@@ -3,14 +3,6 @@ import { Form } from "react-bootstrap";
 import Board from "./Board";
 export function NumSquareForm(): JSX.Element {
     const [numSquares, setNumSquares] = useState(12);
-    const [numFish, setNumFish] = useState(0);
-    const incFish = () => {
-        setNumFish(numFish + 1);
-    };
-
-    const decFish = () => {
-        setNumFish(numFish - 1);
-    };
     return (
         <div>
             <div>
@@ -44,12 +36,7 @@ export function NumSquareForm(): JSX.Element {
                     backgroundColor: "gray"
                 }}
             >
-                <Board
-                    numSquares={numSquares}
-                    numFish={numFish}
-                    decFish={decFish}
-                    incFish={incFish}
-                />
+                <Board numSquares={numSquares} />
             </div>
         </div>
     );

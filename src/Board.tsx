@@ -1,6 +1,4 @@
 import React, { MutableRefObject, useRef, useState } from "react";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 import Example from "./Example";
 
 const renderSquare = (
@@ -9,12 +7,13 @@ const renderSquare = (
     height: number,
     incFish: () => void,
     decFish: () => void,
-    numFish: number,
+    numFish: MutableRefObject<number>,
     delFishX: MutableRefObject<number>,
     delFishID: MutableRefObject<number>,
     setDeleteVal: (x: number, id: string) => void,
     resetDeleteVal: () => void,
-    renderDeleteVal: () => void
+    renderDeleteVal: (r: number) => void,
+    deleteVal: number
 ) => {
     const x = i;
     const y = 0;
@@ -40,6 +39,7 @@ const renderSquare = (
                 setDeleteVal={setDeleteVal}
                 resetDeleteVal={resetDeleteVal}
                 renderDeleteVal={renderDeleteVal}
+                deleteVal={deleteVal}
             ></Example>
         </div>
     );
@@ -47,26 +47,31 @@ const renderSquare = (
 
 type BoardProps = {
     numSquares: number;
-    numFish: number;
-    incFish: () => void;
-    decFish: () => void;
 };
 
-const Board: React.FC<BoardProps> = (props) => {
-    const { numSquares, numFish, incFish, decFish } = props;
+export function Board({ numSquares }: BoardProps) {
     const numCol = Math.ceil(Math.sqrt(numSquares));
     const width = 100 / numCol;
     const height = 100 / Math.ceil(numSquares / numCol);
     const squares = [];
+    //const [numFish, setNumFish] = useState(0);
+    const numFish = useRef(0);
+    const incFish = () => {
+        //setNumFish(numFish + 1);
+        numFish.current = numFish.current + 1;
+    };
+    const decFish = () => {
+        //setNumFish(numFish - 1);
+        numFish.current = numFish.current - 1;
+    };
     const delFishX = useRef(-1);
     const delFishID = useRef(-1);
-    const [renderDelete, setRenderDelete] = useState(true);
-    const renderDeleteVal = () => {
+    const [renderDelete, setRenderDelete] = useState(0);
+    function renderDeleteVal(r: number) {
         console.log("render delete before", renderDelete);
-        console.log("render delete opposite", !renderDelete);
-        setRenderDelete(!renderDelete);
+        setRenderDelete(r);
         console.log("render delete after", renderDelete);
-    };
+    }
 
     const setDeleteVal = (x: number, id: string) => {
         delFishX.current = x;
@@ -93,7 +98,8 @@ const Board: React.FC<BoardProps> = (props) => {
                 delFishID,
                 setDeleteVal,
                 resetDeleteVal,
-                renderDeleteVal
+                renderDeleteVal,
+                renderDelete
             )
         );
     }
@@ -101,19 +107,17 @@ const Board: React.FC<BoardProps> = (props) => {
     console.log("deleteID board", delFishID);
 
     return (
-        <DndProvider backend={HTML5Backend}>
-            <div
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    flexWrap: "wrap"
-                }}
-            >
-                {squares}
-            </div>
-        </DndProvider>
+        <div
+            style={{
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                flexWrap: "wrap"
+            }}
+        >
+            {squares}
+        </div>
     );
-};
+}
 
 export default Board;

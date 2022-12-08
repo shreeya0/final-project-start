@@ -20,6 +20,9 @@ export interface FishProps {
     hideSourceOnDrag?: boolean;
     children?: ReactNode;
     height: number;
+    width: number;
+    s: string;
+    size: number;
 }
 
 export const Fish: FC<FishProps> = ({
@@ -29,23 +32,28 @@ export const Fish: FC<FishProps> = ({
     name,
     hideSourceOnDrag,
     children,
-    height
+    height,
+    width,
+    s,
+    size
 }) => {
     const [{ isDragging }, drag] = useDrag(
         () => ({
             type: ItemTypes.FISH,
-            item: { id, left, top, name },
+            item: { id, left, top, name, s, size },
             collect: (monitor) => ({
                 isDragging: monitor.isDragging()
             })
         }),
-        [id, left, top, name]
+        [id, left, top, name, s, size]
     );
+
+    const smallerSize = height > width ? width : height;
 
     if (isDragging && hideSourceOnDrag) {
         return <div ref={drag} />;
     }
-
+    console.log("realFishWidth: ", smallerSize * (size / 6));
     return (
         <div
             className={"fish" + id.toString()}
@@ -54,18 +62,21 @@ export const Fish: FC<FishProps> = ({
                 ...style,
                 left,
                 top,
-                width: height.toString() + "%",
-                height: height.toString() + "%",
+                height: (smallerSize * (size / 6)).toString() + "px",
+                width: (smallerSize * (size / 6)).toString() + "px",
                 border: "2px dotted white"
             }}
             data-testid={"fish" + id.toString()}
         >
             {children}
             <img
-                src={require("./images/pixelFish.png")}
+                src={require(s + "")}
                 alt="tankPic"
-                width="100%"
-                height="100%"
+                style={{
+                    position: "relative",
+                    height: "100%",
+                    width: "100%"
+                }}
             />
         </div>
     );

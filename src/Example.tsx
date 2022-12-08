@@ -9,13 +9,14 @@ export interface ExampleProps {
     height: number;
     incFish: () => void;
     decFish: () => void;
-    numFish: number;
+    numFish: MutableRefObject<number>;
     deleteThisFish: [number, number];
     delFishX: MutableRefObject<number>;
     delFishID: MutableRefObject<number>;
     setDeleteVal: (x: number, id: string) => void;
     resetDeleteVal: () => void;
-    renderDeleteVal: () => void;
+    renderDeleteVal: (r: number) => void;
+    deleteVal: number;
 }
 
 export const Example: FC<ExampleProps> = ({
@@ -31,7 +32,8 @@ export const Example: FC<ExampleProps> = ({
     delFishID,
     setDeleteVal,
     resetDeleteVal,
-    renderDeleteVal
+    renderDeleteVal,
+    deleteVal
 }) => {
     return (
         <div>
@@ -50,6 +52,7 @@ export const Example: FC<ExampleProps> = ({
                 setDeleteVal={setDeleteVal}
                 resetDeleteVal={resetDeleteVal}
                 renderDeleteVal={renderDeleteVal}
+                deleteVal={deleteVal}
             />
         </div>
     );

@@ -4,28 +4,33 @@ import { observe } from "./game";
 import reportWebVitals from "./reportWebVitals";
 import NumSquareForm from "./NumSquareForm";
 import { Menu } from "./Menu";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 observe(() => {
     ReactDOM.render(
-        <React.StrictMode>
-            <h1
-                className="text-center"
-                style={{
-                    fontStyle: "Bold",
-                    fontFamily: "Impact",
-                    fontSize: "80px"
-                }}
-            >
-                FISHDOM: Shreeya, Daniel, Jason
-            </h1>
-            <div>
-                <Menu></Menu>
-            </div>
-            <div>
-                <NumSquareForm></NumSquareForm>
-            </div>
-            <div className="App"></div>
-        </React.StrictMode>,
+        <DndProvider backend={HTML5Backend}>
+            <React.StrictMode>
+                <h1
+                    className="text-center"
+                    style={{
+                        fontStyle: "Bold",
+                        fontFamily: "Impact",
+                        fontSize: "80px"
+                    }}
+                >
+                    FISHDOM: Shreeya, Daniel, Jason
+                </h1>
+
+                <div>
+                    <Menu></Menu>
+                </div>
+                <div>
+                    <NumSquareForm></NumSquareForm>
+                </div>
+                <div className="App"></div>
+            </React.StrictMode>
+        </DndProvider>,
         document.getElementById("root")
     );
 });

@@ -1,3 +1,4 @@
 export const ItemTypes = {
-    FISH: "fish"
+    FISH: "fish",
+    MENUFISH: "menuFish"
 };

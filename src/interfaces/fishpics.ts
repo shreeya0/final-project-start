@@ -15,7 +15,7 @@ export const Squid: Fish = {
     freshwater: false,
     name: "squid",
     predator: true,
-    size: 4,
+    size: 3,
     position: [0, 0],
     image: "./images/squidward.png"
 };
@@ -65,7 +65,7 @@ export const Shark: Fish = {
     freshwater: false,
     name: "shark",
     predator: true,
-    size: 15,
+    size: 5,
     position: [0, 0],
     image: "./images/shark.png"
 };
@@ -75,7 +75,7 @@ export const Whale: Fish = {
     freshwater: false,
     name: "whale",
     predator: false,
-    size: 20,
+    size: 5,
     position: [0, 0],
     image: "./images/whale.png"
 };
@@ -85,7 +85,7 @@ export const Dolphin: Fish = {
     freshwater: false,
     name: "dolphin",
     predator: false,
-    size: 6,
+    size: 4,
     position: [0, 0],
     image: "./images/dolphin.png"
 };
@@ -95,7 +95,7 @@ export const Sponge: Fish = {
     freshwater: false,
     name: "sponge",
     predator: false,
-    size: 1,
+    size: 3,
     position: [0, 0],
     image: "./images/spongebob.png"
 };
@@ -215,7 +215,7 @@ export const Orca: Fish = {
     freshwater: false,
     name: "orca",
     predator: true,
-    size: 10,
+    size: 5,
     position: [0, 0],
     image: "./images/killerwhale.png"
 };
@@ -225,7 +225,7 @@ export const Crocodile: Fish = {
     freshwater: true,
     name: "crocodile",
     predator: true,
-    size: 7,
+    size: 4,
     position: [0, 0],
     image: "./images/crocodile.png"
 };
@@ -235,7 +235,7 @@ export const Eel: Fish = {
     freshwater: true,
     name: "eel",
     predator: true,
-    size: 4,
+    size: 2,
     position: [0, 0],
     image: "./images/eel.png"
 };
@@ -295,7 +295,7 @@ export const Swordfish: Fish = {
     freshwater: false,
     name: "swordfish",
     predator: true,
-    size: 6,
+    size: 4,
     position: [0, 0],
     image: "./images/swordfish.png"
 };
@@ -305,7 +305,7 @@ export const Whaleshark: Fish = {
     freshwater: false,
     name: "whaleshark",
     predator: false,
-    size: 20,
+    size: 5,
     position: [0, 0],
     image: "./images/whaleshark.png"
 };

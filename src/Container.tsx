@@ -1,4 +1,4 @@
-import { FC, MutableRefObject } from "react";
+import { FC, MutableRefObject, useEffect } from "react";
 import { useCallback, useState } from "react";
 import type { XYCoord } from "react-dnd";
 import { useDrop } from "react-dnd";
@@ -7,6 +7,8 @@ import { Fish } from "./Fish";
 import type { DragItem } from "./interfaces";
 import { ItemTypes } from "./ItemTypes";
 import Overlay from "./Overlay";
+import Board from "./Board";
+import { render } from "@testing-library/react";
 
 export interface ContainerProps {
     hideSourceOnDrag: boolean;
@@ -16,13 +18,14 @@ export interface ContainerProps {
     height: number;
     incFish: () => void;
     decFish: () => void;
-    numFish: number;
+    numFish: MutableRefObject<number>;
     deleteThisFish: [number, number];
     setDeleteVal: (x: number, id: string) => void;
     resetDeleteVal: () => void;
+    deleteVal: number;
     delFishX: MutableRefObject<number>;
     delFishID: MutableRefObject<number>;
-    renderDeleteVal: () => void;
+    renderDeleteVal: (r: number) => void;
 }
 
 export const Container: FC<ContainerProps> = ({
@@ -32,11 +35,15 @@ export const Container: FC<ContainerProps> = ({
     height,
     incFish,
     decFish,
+    renderDeleteVal,
+    deleteVal,
     numFish,
     setDeleteVal,
     delFishX,
     delFishID
 }) => {
+    let incRender = deleteVal;
+    let r = false;
     const [fishes, setFishes] = useState(Array(0).fill(Array(0).fill(null)));
     const newFishes = [...fishes];
     let index = -1;
@@ -52,19 +59,20 @@ export const Container: FC<ContainerProps> = ({
     }
     console.log("Rerender?" + delFishX.current + bool_delete);
     if (delFishX.current !== x && bool_delete) {
-        console.log("deleteX inside delete", delFishX.current);
-        console.log("deleteID inside delete", delFishID.current);
-        console.log("delete index", index);
-        console.log("fishes before", fishes, "x", 0);
+        //console.log("deleteX inside delete", delFishX.current);
+        //console.log("deleteID inside delete", delFishID.current);
+        //console.log("delete index", index);
+        //console.log("fishes before", fishes, "x", 0);
         setFishes(fishes.splice(index, 1));
-        console.log("fishes after", fishes);
+        //console.log("fishes after", fishes);
         index = -1;
         bool_delete = false;
         delFishX.current = -1;
         delFishID.current = -1;
     }
-    const addFish = () => {
-        console.log("inside add fish");
+    /*
+    const addFish = (s: string) => {
+        //console.log("inside add fish");
         const tankWidth = document.getElementById("tank")?.offsetWidth;
         const tankHeight = document.getElementById("tank")?.offsetHeight;
         const newFishes = [...fishes];
@@ -72,20 +80,28 @@ export const Container: FC<ContainerProps> = ({
             newFishes[i] = fishes[i];
         }
         if (tankHeight !== undefined && tankWidth !== undefined) {
-            const fishWidth = (height / 100) * tankWidth;
-            const fishHeight = (height / 100) * tankHeight;
+            const fishWidth = (height / 100) * tankWidth * (size / 5);
+            const fishHeight = (height / 100) * tankHeight * (size / 5);
             const top = Math.floor(tankHeight - fishHeight);
             const left = Math.floor(tankWidth - fishWidth);
-            const newFish = [numFish, left, top];
+            const newFish = [numFish.current, left, top, s];
             newFishes.push(newFish);
             setFishes(newFishes);
-            incFish();
+            //incFish();
+            numFish.current++;
         } else {
             console.log("undefined");
         }
     };
+    */
 
-    const addFishNewTank = (id: number, left: number, top: number) => {
+    const addFishNewTank = (
+        id: number,
+        left: number,
+        top: number,
+        s: string,
+        size: number
+    ) => {
         console.log("inside add fish new tank");
         const tankWidth = document.getElementById("tank")?.offsetWidth;
         const tankHeight = document.getElementById("tank")?.offsetHeight;
@@ -107,33 +123,80 @@ export const Container: FC<ContainerProps> = ({
                 newFishes[i] = fishes[i];
             }
             const idVal = id.toString();
-            const newFish = [id, leftAdjusted, topAdjusted];
+            const newFish = [id, leftAdjusted, topAdjusted, s, size];
             newFishes.push(newFish);
-            setFishes(newFishes);
             setDeleteVal(x, idVal);
+            renderDeleteVal(incRender++);
+            setFishes(newFishes);
+            renderDeleteVal(incRender++);
             console.log("deleteX after set", delFishX.current);
             console.log("deleteID after set", delFishID.current);
         }
     };
 
+    const addFishFromMenu = (s: string, size: number) => {
+        console.log("inside from menu");
+        const newFishes = [...fishes];
+        for (let i = 0; i < fishes.length; i++) {
+            newFishes[i] = fishes[i];
+        }
+        const newFish = [numFish.current, 10, 10, s, size];
+        //incFish();
+        numFish.current++;
+        renderDeleteVal(incRender++);
+        newFishes.push(newFish);
+        setFishes(newFishes);
+    };
+
     const moveFish = useCallback(
-        (id: number, left: number, top: number, name: number) => {
+        (
+            id: number,
+            left: number,
+            top: number,
+            name: number,
+            s: string,
+            size: number
+        ) => {
+            console.log("inside move fish");
+            console.log(
+                "fish{ id: " +
+                    id +
+                    " left: " +
+                    left +
+                    " top: " +
+                    top +
+                    " name: " +
+                    name +
+                    " size: " +
+                    size +
+                    " }"
+            );
             const tankWidth = document.getElementById("tank")?.offsetWidth;
             const tankHeight = document.getElementById("tank")?.offsetHeight;
+            console.log("tankWidth", tankWidth);
             const newFishes = [...fishes];
             for (let i = 0; i < fishes.length; i++) {
                 newFishes[i] = fishes[i];
             }
             if (tankWidth !== undefined && tankHeight !== undefined) {
-                const fishWidth = (height / 100) * tankWidth;
-                const fishHeight = (height / 100) * tankHeight;
-                if (
+                console.log(
+                    "tankWidth: " + tankWidth + " tankHeight: " + tankHeight
+                );
+                const smallerSize =
+                    tankHeight >= tankWidth ? tankWidth : tankHeight;
+                console.log("smallerSize: " + smallerSize);
+                const fishWidth = smallerSize * (size / 6);
+                console.log("fishWidth: " + fishWidth);
+                const fishHeight = smallerSize * (size / 6);
+                if (name === -3) {
+                    addFishFromMenu(s, size);
+                } else if (
                     left + fishWidth <= tankWidth &&
                     left >= 0 &&
                     top + fishHeight <= tankHeight &&
                     top >= 0
                 ) {
-                    newFishes[id] = [name, left, top];
+                    newFishes[id] = [name, left, top, s, size];
                     setFishes(newFishes);
                 } else if (
                     ((left < 0 && Math.abs(left)) > fishWidth ||
@@ -147,49 +210,12 @@ export const Container: FC<ContainerProps> = ({
                         (top % tankHeight > 0 &&
                             top % tankHeight < tankHeight - fishHeight))
                 ) {
-                    addFishNewTank(name, left, top);
-                    incFish();
-                    decFish();
-                }
-                if (left < 0) {
-                    console.log(
-                        "left < 0: ",
-                        left < 0,
-                        "left%tankWidth: ",
-                        Math.abs(left) % tankWidth,
-                        "fishWidth: ",
-                        fishWidth
-                    );
-                } else {
-                    console.log(
-                        "left<0: ",
-                        left < 0,
-                        "left%tankWidth",
-                        left % tankWidth,
-                        "fishWidth: ",
-                        fishWidth
-                    );
-                }
-                if (top < 0) {
-                    console.log(
-                        "top<0: ",
-                        top < 0,
-                        "top%tankHeight: ",
-                        Math.abs(top) % tankHeight,
-                        "fishHeight: ",
-                        fishHeight
-                    );
-                } else {
-                    console.log(
-                        "top<0: ",
-                        top < 0,
-                        "top%tankHeight",
-                        top % tankHeight,
-                        "fishHeight: ",
-                        fishHeight
-                    );
+                    addFishNewTank(name, left, top, s, size);
+                    //incFish();
+                    //decFish();
                 }
             }
+            r = true;
         },
         [fishes, setFishes]
     );
@@ -203,7 +229,11 @@ export const Container: FC<ContainerProps> = ({
                 const left = Math.round(item.left + delta.x);
                 const top = Math.round(item.top + delta.y);
                 const name = item.name;
-                moveFish(item.id, left, top, name);
+                moveFish(item.id, left, top, name, item.s, item.size);
+                if (r) {
+                    incRender = deleteVal + 1;
+                }
+                renderDeleteVal(incRender);
                 return;
             }
         }),
@@ -220,17 +250,19 @@ export const Container: FC<ContainerProps> = ({
         tankPic = "fresh.png";
     }
     console.log("fishes tank ", x, ": ", fishes);
+    const tankHeight = document.getElementById("tank")?.offsetHeight;
+    const tankWidth = document.getElementById("tank")?.offsetWidth;
     return (
         <div
             ref={drop}
-            data-testId={"tank"}
+            id={"tank"}
+            data-testid={"tank"}
             style={{
                 height: height.toString() + "%",
                 width: width.toString() + "%",
                 border: "1px solid black",
                 position: "absolute"
             }}
-            onClick={addFish}
         >
             <img
                 src={require("./images/" + tankPic)}
@@ -239,22 +271,31 @@ export const Container: FC<ContainerProps> = ({
                 height="100%"
             />
             {pred && <Overlay color="red" opacity={0.25} />}
-            {fishes.map((thisFish: [number, number, number]) => {
-                const left = thisFish[1];
-                const top = thisFish[2];
-                const id = thisFish[0];
-                return (
-                    <Fish
-                        key={fishes.indexOf(thisFish)}
-                        id={fishes.indexOf(thisFish)}
-                        name={id}
-                        left={left}
-                        top={top}
-                        hideSourceOnDrag={hideSourceOnDrag}
-                        height={height}
-                    ></Fish>
-                );
-            })}
+            {fishes.map(
+                (thisFish: [number, number, number, string, number]) => {
+                    const left = thisFish[1];
+                    const top = thisFish[2];
+                    const id = thisFish[0];
+                    const s = thisFish[3];
+                    const size = thisFish[4];
+                    return (
+                        <Fish
+                            key={fishes.indexOf(thisFish)}
+                            id={fishes.indexOf(thisFish)}
+                            name={id}
+                            left={left}
+                            top={top}
+                            hideSourceOnDrag={hideSourceOnDrag}
+                            height={
+                                tankHeight !== undefined ? tankHeight : height
+                            }
+                            width={tankWidth !== undefined ? tankWidth : height}
+                            s={s}
+                            size={size}
+                        ></Fish>
+                    );
+                }
+            )}
         </div>
     );
 };
