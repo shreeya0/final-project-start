@@ -41,6 +41,7 @@ export const Fish: FC<FishProps> = ({
     pred,
     salt
 }) => {
+    //console.log("inside fish");
     const [{ isDragging }, drag] = useDrag(
         () => ({
             type: ItemTypes.FISH,
@@ -53,13 +54,9 @@ export const Fish: FC<FishProps> = ({
     );
 
     const smallerSize = height > width ? width : height;
-    //const area = Math.sqrt(height * width);
-    //console.log("area: " + area + " smallerSize: " + smallerSize);
-
     if (isDragging && hideSourceOnDrag) {
         return <div ref={drag} />;
     }
-    console.log("realFishWidth: ", smallerSize * (size / 6));
     return (
         <div
             className={"fish" + id.toString()}

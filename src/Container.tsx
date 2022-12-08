@@ -56,11 +56,10 @@ export const Container: FC<ContainerProps> = ({
         setTankSalt(newTankSalt);
         setTankPred(newTankPred);
     };
-    let incRender = deleteVal;
-    let r = false;
     const [fishes, setFishes] = useState(Array(0).fill(Array(0).fill(null)));
-    const updateFishes = [...fishes];
-    let update = false;
+    const smallerSize = tankHeight >= tankWidth ? tankWidth : tankHeight;
+    let incRender = deleteVal;
+    /*
     for (let i = 0; i < fishes.length; i++) {
         updateFishes[i] = fishes[i];
         const name = updateFishes[i][0];
@@ -86,31 +85,77 @@ export const Container: FC<ContainerProps> = ({
             updateFishes[i] = [name, left, top, s, size];
         }
     }
-    if (update === true) {
+    */
+    const updateFishes = Array(0).fill(Array(0).fill(null));
+    fishes.map(
+        (
+            thisFish: [number, number, number, string, number, boolean, boolean]
+        ) => (updateFishes[fishes.indexOf(thisFish)] = [...thisFish])
+    );
+    let update = false;
+    updateFishes.map(
+        (
+            thisFish: [number, number, number, string, number, boolean, boolean]
+        ) => {
+            const fishWidth = smallerSize * (thisFish[4] / 6);
+            const fishHeight = smallerSize * (thisFish[4] / 6);
+            const maxLeft = tankWidth - fishWidth;
+            const maxTop = tankHeight - fishHeight;
+            if (thisFish[1] >= maxLeft) {
+                thisFish[1] = maxLeft - 1;
+                update = true;
+            }
+            if (thisFish[2] >= maxTop) {
+                thisFish[2] = maxTop - 1;
+                update = true;
+            }
+        }
+    );
+    if (update) {
         setFishes(updateFishes);
     }
     const [show, setShow] = useState(false);
     const [message, setMessage] = useState("");
     const handleClose = () => setShow(false);
-    const newFishes = [...fishes];
     let index = -1;
-    let bool_delete = false;
+    const newFishes = Array(0).fill(Array(0).fill(null));
+    fishes.map(
+        (
+            thisFish: [number, number, number, string, number, boolean, boolean]
+        ) => (newFishes[fishes.indexOf(thisFish)] = [...thisFish])
+    );
+    /*
     for (let i = 0; i < fishes.length; i++) {
-        newFishes[i] = [...fishes[i]];
-    }
-    for (let i = 0; i < fishes.length; i++) {
-        if (fishes[i][0] === delFishID.current) {
+        if (newFishes[i][0] === delFishID.current) {
             bool_delete = true;
             index = i;
         }
-    }
-    console.log("Rerender?" + delFishX.current + bool_delete);
-    if (delFishX.current !== x && bool_delete) {
-        setFishes(fishes.splice(index, 1));
+    }*/
+    index = newFishes.reduce(
+        (
+            it: number,
+            thisFish: [number, number, number, string, number, boolean, boolean]
+        ) =>
+            (it =
+                thisFish[0] === delFishID.current
+                    ? newFishes.indexOf(thisFish)
+                    : it),
+        -1
+    );
+    console.log(
+        "Rerendered: { delFishX: " +
+            delFishX.current +
+            " delFishID: " +
+            delFishID.current +
+            " index: " +
+            index
+    );
+    if (delFishX.current !== x && index !== -1) {
+        newFishes.splice(index, 1);
+        setFishes(newFishes);
         index = -1;
-        bool_delete = false;
-        delFishX.current = -1;
-        delFishID.current = -1;
+        //delFishX.current = -1;
+        //delFishID.current = -1;
     }
 
     const addFishNewTank = (
@@ -123,43 +168,31 @@ export const Container: FC<ContainerProps> = ({
         salt: boolean
     ) => {
         console.log("inside add fish new tank");
-        const tankWidth = document.getElementById("tank")?.offsetWidth;
-        const tankHeight = document.getElementById("tank")?.offsetHeight;
-        if (tankHeight !== undefined && tankWidth !== undefined) {
-            let leftAdjusted = 0;
-            let topAdjusted = 0;
-            if (left < 0) {
-                leftAdjusted = tankWidth + (left % tankWidth);
-            } else if (left > 0) {
-                leftAdjusted = left % tankWidth;
-            }
-            if (top < 0) {
-                topAdjusted = tankHeight + (top % tankHeight);
-            } else if (top > 0) {
-                topAdjusted = top % tankHeight;
-            }
-            const newFishes = [...fishes];
-            for (let i = 0; i < fishes.length; i++) {
-                newFishes[i] = fishes[i];
-            }
-            const idVal = id.toString();
-            const newFish = [
-                id,
-                leftAdjusted,
-                topAdjusted,
-                s,
-                size,
-                pred,
-                salt
-            ];
-            newFishes.push(newFish);
-            setDeleteVal(x, idVal);
-            renderDeleteVal(incRender++);
-            setFishes(newFishes);
-            renderDeleteVal(incRender++);
-            console.log("deleteX after set", delFishX.current);
-            console.log("deleteID after set", delFishID.current);
+        let leftAdjusted = 0;
+        let topAdjusted = 0;
+        if (left < 0) {
+            leftAdjusted = tankWidth + (left % tankWidth);
+        } else if (left > 0) {
+            leftAdjusted = left % tankWidth;
         }
+        if (top < 0) {
+            topAdjusted = tankHeight + (top % tankHeight);
+        } else if (top > 0) {
+            topAdjusted = top % tankHeight;
+        }
+        const newFishes = [...fishes];
+        for (let i = 0; i < fishes.length; i++) {
+            newFishes[i] = fishes[i];
+        }
+        const idVal = id.toString();
+        const newFish = [id, leftAdjusted, topAdjusted, s, size, pred, salt];
+        newFishes.push(newFish);
+        setDeleteVal(x, idVal);
+        renderDeleteVal(incRender++);
+        setFishes(newFishes);
+        renderDeleteVal(incRender++);
+        console.log("deleteX after set", delFishX.current);
+        console.log("deleteID after set", delFishID.current);
     };
 
     const addFishFromMenu = (
@@ -176,7 +209,7 @@ export const Container: FC<ContainerProps> = ({
         const newFish = [numFish.current, 10, 10, s, size, pred, salt];
         //incFish();
         numFish.current++;
-        renderDeleteVal(incRender++);
+        //renderDeleteVal(incRender++);
         newFishes.push(newFish);
         setFishes(newFishes);
     };
@@ -218,14 +251,14 @@ export const Container: FC<ContainerProps> = ({
                 newFishes[i] = fishes[i];
             }
             if (tankWidth !== undefined && tankHeight !== undefined) {
-                console.log(
+                /*console.log(
                     "tankWidth: " + tankWidth + " tankHeight: " + tankHeight
-                );
+                );*/
                 const smallerSize =
                     tankHeight >= tankWidth ? tankWidth : tankHeight;
-                console.log("smallerSize: " + smallerSize);
+                //console.log("smallerSize: " + smallerSize);
                 const fishWidth = smallerSize * (size / 6);
-                console.log("fishWidth: " + fishWidth);
+                //console.log("fishWidth: " + fishWidth);
                 const fishHeight = smallerSize * (size / 6);
                 if (name === -3) {
                     addFishFromMenu(s, size, pred, salt);
@@ -252,7 +285,6 @@ export const Container: FC<ContainerProps> = ({
                     addFishNewTank(name, left, top, s, size, pred, salt);
                 }
             }
-            r = true;
         },
         [fishes, setFishes]
     );
@@ -290,10 +322,6 @@ export const Container: FC<ContainerProps> = ({
                     );
                     setShow(true);
                 }
-                if (r) {
-                    incRender = deleteVal + 1;
-                }
-                renderDeleteVal(incRender);
                 return;
             }
         }),
@@ -309,7 +337,7 @@ export const Container: FC<ContainerProps> = ({
     } else {
         tankPic = "preyFresh.png";
     }
-    console.log("fishes tank ", x, ": ", fishes);
+    console.log("fishes tank " + x + ": " + fishes);
     return (
         <div>
             <div>
