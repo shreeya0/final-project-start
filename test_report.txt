@@ -38,15 +38,17 @@ All files           |       0 |        0 |       0 |       0 |
   Example.tsx       |       0 |      100 |       0 |       0 | 21-36             
   Fish.tsx          |       0 |        0 |       0 |       0 | 7-49              
   ItemTypes.ts      |       0 |      100 |     100 |       0 | 1                 
-  Menu.tsx          |       0 |        0 |       0 |       0 | 11-112            
+  Menu.tsx          |       0 |        0 |       0 |       0 | 13-124            
   NumSquareForm.tsx |       0 |      100 |       0 |       0 | 5-32              
   Overlay.tsx       |       0 |      100 |       0 |       0 | 8-9               
   Square.tsx        |       0 |        0 |       0 |       0 | 10-27             
   TankEdit.tsx      |       0 |      100 |       0 |       0 | 12-65             
   constants.ts      |       0 |      100 |     100 |       0 | 1                 
   declarations.d.ts |       0 |        0 |       0 |       0 |                   
+  filterButton.tsx  |       0 |      100 |       0 |       0 | 9                 
   game.ts           |       0 |        0 |       0 |       0 | 3-26              
   interfaces.tsx    |       0 |        0 |       0 |       0 |                   
+  sortButton.tsx    |       0 |      100 |       0 |       0 | 9                 
  src/interfaces     |       0 |      100 |       0 |       0 |                   
   Fish.ts           |       0 |        0 |       0 |       0 |                   
   Tank.ts           |       0 |        0 |       0 |       0 |                   
@@ -55,5 +57,5 @@ All files           |       0 |        0 |       0 |       0 |
 Test Suites: 1 failed, 1 total
 Tests:       0 total
 Snapshots:   0 total
-Time:        4.151 s
+Time:        3.994 s
 Ran all test suites.
