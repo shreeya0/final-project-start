@@ -1,4 +1,4 @@
-import { FC, MutableRefObject, useEffect } from "react";
+import { FC, MutableRefObject } from "react";
 import { useCallback, useState } from "react";
 import type { XYCoord } from "react-dnd";
 import { useDrop } from "react-dnd";
@@ -7,8 +7,6 @@ import { Fish } from "./Fish";
 import type { DragItem } from "./interfaces";
 import { ItemTypes } from "./ItemTypes";
 import Overlay from "./Overlay";
-import Board from "./Board";
-import { render } from "@testing-library/react";
 
 export interface ContainerProps {
     hideSourceOnDrag: boolean;
@@ -33,8 +31,6 @@ export const Container: FC<ContainerProps> = ({
     x,
     width,
     height,
-    incFish,
-    decFish,
     renderDeleteVal,
     deleteVal,
     numFish,

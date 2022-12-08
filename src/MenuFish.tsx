@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { FC, ReactNode } from "react";
 import { useDrag } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";

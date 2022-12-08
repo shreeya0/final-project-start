@@ -1,12 +1,9 @@
 /* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import { Button, ButtonGroup, Col, Form, Modal, Table } from "react-bootstrap";
-import { useDrop, XYCoord } from "react-dnd";
 import { FilterButton } from "./filterButton";
-import { DragItem } from "./interfaces";
 import { Fish } from "./interfaces/Fish";
 import { allList } from "./interfaces/fishpics";
-import { ItemTypes } from "./ItemTypes";
 import { MenuFish } from "./MenuFish";
 import { SortButton } from "./sortButton";
 
