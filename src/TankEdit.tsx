@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import Tank from "./interfaces/Tank";
 import "./TankEdit.css";
 
 interface tankEditProps {
@@ -82,72 +81,3 @@ export const TankEdit = ({
         </div>
     );
 };
-
-/*
-            <div>
-                {newQuiz.questionList.map((q: Question, index: number) => (
-                    <QuestionEdit
-                        key={newQuiz.id + "|" + q.id}
-                        index={index}
-                        lastIndex={newQuiz.questionList.length - 1}
-                        question={q}
-                        editQuestion={editQuestion}
-                        removeQuestion={removeQuestion}
-                        swapQuestion={swapQuestion}
-                    ></QuestionEdit>
-                ))}
-            </div>
-            <hr />
-            <div>
-                <Button
-                    className="add_question_button"
-                    onClick={() => {
-                        setNewQuiz({
-                            ...newQuiz,
-                            questionList: [
-                                ...newQuiz.questionList,
-                                {
-                                    id: newQuiz.questionList.length,
-                                    body: "Example Question",
-                                    type: "short_answer_question",
-                                    options: [],
-                                    submission: "",
-                                    expected: "Example Answer",
-                                    points: 1,
-                                    published: false
-                                }
-                            ]
-                        });
-                    }}
-                >
-                    Add Question
-                </Button>
-                <div className="edit_footer">
-                    <div>
-                        <Button
-                            variant="success"
-                            className="save_edit_btn"
-                            onClick={() => {
-                                saveChanges();
-                                switchEdit();
-                            }}
-                        >
-                            Save
-                        </Button>
-                        <Button variant="warning" onClick={switchEdit}>
-                            Cancel
-                        </Button>
-                    </div>
-                    <Button
-                        variant="danger"
-                        onClick={() => {
-                            deleteQuiz(quiz.id);
-                            resetView();
-                        }}
-                    >
-                        Delete Quiz
-                    </Button>
-                </div>
-            </div>
-        </div>
-*/

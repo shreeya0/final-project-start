@@ -1,3 +1,4 @@
+/* eslint-disable no-extra-parens */
 import { FC, MutableRefObject } from "react";
 import { useCallback, useState } from "react";
 import type { XYCoord } from "react-dnd";
@@ -7,7 +8,6 @@ import { Fish } from "./Fish";
 import type { DragItem } from "./interfaces";
 import { ItemTypes } from "./ItemTypes";
 import Overlay from "./Overlay";
-import { Button, Modal } from "react-bootstrap";
 import { Popup } from "./Popup";
 import { TankEdit } from "./TankEdit";
 
