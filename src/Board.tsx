@@ -1,5 +1,4 @@
 import React, { MutableRefObject, useRef, useState } from "react";
-import { NumberLiteralType } from "typescript";
 import Example from "./Example";
 
 const renderSquare = (
