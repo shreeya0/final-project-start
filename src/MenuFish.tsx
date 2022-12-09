@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { FC, ReactNode } from "react";
 import { useDrag } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
 
 export interface MenuFishProps {
     s: string;
-    id: any;
+    id: string;
     left: number;
     top: number;
     name: number;
