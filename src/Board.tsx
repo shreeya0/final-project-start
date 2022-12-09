@@ -1,6 +1,9 @@
 import React, { MutableRefObject, useRef, useState } from "react";
 import Example from "./Example";
 
+const cent = 100;
+const reset = -1;
+
 const renderSquare = (
     i: number,
     width: number,
@@ -56,10 +59,10 @@ type BoardProps = {
 export function Board({ numSquares, boardWidth, boardHeight }: BoardProps) {
     const numFish = useRef(0);
     const numCol = Math.ceil(Math.sqrt(numSquares));
-    const width = 100 / numCol;
-    const height = 100 / Math.ceil(numSquares / numCol);
-    const tankWidth = (width / 100) * boardWidth;
-    const tankHeight = (height / 100) * boardHeight;
+    const width = cent / numCol;
+    const height = cent / Math.ceil(numSquares / numCol);
+    const tankWidth = (width / cent) * boardWidth;
+    const tankHeight = (height / cent) * boardHeight;
     const squares = [];
     const delFishX = useRef(-1);
     const delFishID = useRef(-1);
@@ -78,8 +81,8 @@ export function Board({ numSquares, boardWidth, boardHeight }: BoardProps) {
     };
 
     const resetDeleteVal = () => {
-        delFishX.current = -1;
-        delFishID.current = -1;
+        delFishX.current = reset;
+        delFishID.current = reset;
     };
 
     for (let i = 0; i < numSquares; i++) {

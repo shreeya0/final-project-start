@@ -11,6 +11,8 @@ import Overlay from "./Overlay";
 import { Popup } from "./Popup";
 import { TankEdit } from "./TankEdit";
 
+const nul = 0;
+
 export interface ContainerProps {
     hideSourceOnDrag: boolean;
     x: number;
@@ -151,16 +153,16 @@ export const Container: FC<ContainerProps> = ({
         salt: boolean
     ) => {
         console.log("inside add fish new tank");
-        let leftAdjusted = 0;
-        let topAdjusted = 0;
-        if (left < 0) {
+        let leftAdjusted = nul;
+        let topAdjusted = nul;
+        if (left < nul) {
             leftAdjusted = tankWidth + (left % tankWidth);
-        } else if (left > 0) {
+        } else if (left > nul) {
             leftAdjusted = left % tankWidth;
         }
-        if (top < 0) {
+        if (top < nul) {
             topAdjusted = tankHeight + (top % tankHeight);
-        } else if (top > 0) {
+        } else if (top > nul) {
             topAdjusted = top % tankHeight;
         }
         const newFishes = [...fishes];
@@ -240,22 +242,22 @@ export const Container: FC<ContainerProps> = ({
                     addFishFromMenu(s, size, pred, salt);
                 } else if (
                     left + fishWidth <= tankWidth &&
-                    left >= 0 &&
+                    left >= nul &&
                     top + fishHeight <= tankHeight &&
-                    top >= 0
+                    top >= nul
                 ) {
                     newFishes[id] = [name, left, top, s, size, pred, salt];
                     setFishes(newFishes);
                 } else if (
-                    ((left < 0 && Math.abs(left)) > fishWidth ||
+                    ((left < nul && Math.abs(left)) > fishWidth ||
                         left > tankWidth ||
-                        (top < 0 && Math.abs(top)) > fishHeight ||
+                        (top < nul && Math.abs(top)) > fishHeight ||
                         top > tankHeight) &&
-                    ((left < 0 && Math.abs(left) % tankWidth > fishWidth) ||
+                    ((left < nul && Math.abs(left) % tankWidth > fishWidth) ||
                         (left % tankWidth > 0 &&
                             left % tankWidth < tankWidth - fishWidth)) &&
-                    ((top < 0 && Math.abs(top) % tankHeight > fishHeight) ||
-                        (top % tankHeight > 0 &&
+                    ((top < nul && Math.abs(top) % tankHeight > fishHeight) ||
+                        (top % tankHeight > nul &&
                             top % tankHeight < tankHeight - fishHeight))
                 ) {
                     addFishNewTank(name, left, top, s, size, pred, salt);
