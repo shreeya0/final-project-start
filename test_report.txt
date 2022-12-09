@@ -35,10 +35,10 @@ All files           |       0 |        0 |       0 |       0 |
   Board.tsx         |       0 |      100 |       0 |       0 | 4-110             
   Container.tsx     |       0 |        0 |       0 |       0 | 13-378            
   Example.tsx       |       0 |      100 |       0 |       0 | 23-40             
-  Fish.tsx          |       0 |        0 |       0 |       0 | 7-60              
+  Fish.tsx          |       0 |        0 |       0 |       0 | 6-59              
   ItemTypes.ts      |       0 |      100 |     100 |       0 | 1                 
   Menu.tsx          |       0 |        0 |       0 |       0 | 13-147            
-  MenuFish.tsx      |       0 |        0 |       0 |       0 | 19-45             
+  MenuFish.tsx      |       0 |        0 |       0 |       0 | 18-44             
   NumSquareForm.tsx |       0 |      100 |       0 |       0 | 5-28              
   Overlay.tsx       |       0 |      100 |       0 |       0 | 8-9               
   Popup.tsx         |       0 |      100 |       0 |       0 | 10-11             
@@ -58,5 +58,5 @@ All files           |       0 |        0 |       0 |       0 |
 Test Suites: 1 failed, 1 total
 Tests:       0 total
 Snapshots:   0 total
-Time:        3.637 s
+Time:        4.661 s
 Ran all test suites.
