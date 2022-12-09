@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { CSSProperties, FC, ReactNode } from "react";
 import { useDrag } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
@@ -13,7 +12,7 @@ const style: CSSProperties = {
 };
 
 export interface FishProps {
-    id: any;
+    id: number;
     left: number;
     top: number;
     name: number;
