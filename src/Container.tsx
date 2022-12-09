@@ -1,4 +1,3 @@
-/* eslint-disable no-extra-parens */
 import { FC, MutableRefObject } from "react";
 import { useCallback, useState } from "react";
 import type { XYCoord } from "react-dnd";

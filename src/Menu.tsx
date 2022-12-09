@@ -1,4 +1,3 @@
-/* eslint-disable no-extra-parens */
 import React, { useState } from "react";
 import { Button, ButtonGroup, Col, Form, Modal, Table } from "react-bootstrap";
 import { FilterButton } from "./filterButton";
